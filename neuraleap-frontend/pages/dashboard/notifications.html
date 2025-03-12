@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeuraLeap - Notifications</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <style>
+        .neon-button {
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.2) 0%, rgba(59, 130, 246, 0.2) 100%);
+            color: #06b6d4;
+            border: 1px solid rgba(6, 182, 212, 0.5);
+            box-shadow: 0 0 8px rgba(6, 182, 212, 0.5);
+            transition: all 0.3s ease;
+        }
+        
+        .neon-button:hover {
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.3) 0%, rgba(59, 130, 246, 0.3) 100%);
+            box-shadow: 0 0 12px rgba(6, 182, 212, 0.7);
+        }
+        
+        .neon-text {
+            color: #06b6d4;
+            text-shadow: 0 0 5px rgba(6, 182, 212, 0.7);
+        }
+        
+        .card-bg {
+            background: linear-gradient(135deg, rgba(31, 41, 55, 0.8) 0%, rgba(17, 24, 39, 0.8) 100%);
+            border: 1px solid rgba(55, 65, 81, 0.5);
+        }
+        
+        .bg-dark-bg {
+            background-color: #111827;
+        }
+        
+        .bg-dark-card {
+            background-color: #1f2937;
+        }
+        
+        /* Updated styles for better UI consistency with login page */
+        header.bg-dark-bg {
+            background-color: rgba(17, 24, 39, 0.95);
+            backdrop-filter: blur(10px);
+        }
+        
+        .neon-button-pulse {
+            background: linear-gradient(135deg, rgba(6, 182, 212, 0.2) 0%, rgba(59, 130, 246, 0.2) 100%);
+            color: #06b6d4;
+            border: 1px solid rgba(6, 182, 212, 0.5);
+            box-shadow: 0 0 8px rgba(6, 182, 212, 0.5);
+        }
+        
+        a.text-cyan-400, button.text-cyan-400 {
+            color: #06b6d4;
+            transition: color 0.3s ease, text-shadow 0.3s ease;
+        }
+        
+        a.text-cyan-400:hover, button.text-cyan-400:hover {
+            color: #22d3ee;
+            text-shadow: 0 0 8px rgba(6, 182, 212, 0.7);
+        }
+        
+        .nav-item.text-cyan-400 {
+            color: #06b6d4;
+            border-color: #06b6d4;
+            text-shadow: 0 0 5px rgba(6, 182, 212, 0.5);
+        }
+        
+        .notification-dot {
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 8px;
+            width: 8px;
+            background-color: #06b6d4;
+            border-radius: 50%;
+        }
+        
+        .flash-line {
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(6, 182, 212, 0.8), transparent);
+            animation: flash-line 3s infinite;
+            opacity: 0;
+        }
+        
+        @keyframes flash-line {
+            0% {
+                opacity: 0;
+                left: -100%;
+            }
+            50% {
+                opacity: 0.5;
+            }
+            100% {
+                opacity: 0;
+                left: 100%;
+            }
+        }
+        
+        .notification-item {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(55, 65, 81, 0.5);
+        }
+        
+        .notification-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .notification-indicator {
+            width: 4px !important;
+            height: 100% !important;
+            border-radius: 0 !important;
+            left: 0 !important;
+            top: 0 !important;
+            transform: none !important;
+        }
+        
+        .notification-item.unread .notification-indicator {
+            background-color: #06b6d4;
+        }
+    </style>
+</head>
+<body class="bg-dark-bg text-gray-200">
+    <div class="flex h-screen overflow-hidden">
+        <!-- Sidebar -->
+        <div class="hidden md:flex md:flex-shrink-0">
+            <div class="flex flex-col w-64 border-r border-gray-800">
+                <div class="flex items-center justify-center h-16 px-4 border-b border-gray-800">
+                    <a href="/index.html" class="flex items-center space-x-2">
+                        <div class="relative h-8 w-8 flex items-center justify-center">
+                            <div class="absolute inset-0 bg-cyan-500 opacity-20 rounded-lg filter blur-sm"></div>
+                            <div class="relative z-10 text-cyan-400 font-bold text-lg">N</div>
+                        </div>
+                        <span class="text-white font-bold text-lg tracking-tight">Neura<span class="neon-text">Leap</span></span>
+                    </a>
+                </div>
+
+                <div class="flex flex-col flex-grow pt-5 pb-4 overflow-y-auto">
+                    <nav class="mt-5 flex-1 px-4 space-y-3">
+                        <a href="/pages/dashboard/index.html" class="flex items-center px-4 py-3 text-gray-400 hover:text-cyan-400 hover:bg-dark-card rounded-lg group transition-colors">
+                            <svg class="mr-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path>
+                            </svg>
+                            Dashboard
+                        </a>
+
+                        <a href="/pages/dashboard/notifications.html" class="flex items-center px-4 py-3 text-cyan-400 bg-dark-card rounded-lg group">
+                            <svg class="mr-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path>
+                            </svg>
+                            Notifications
+                            <span class="notification-dot"></span>
+                        </a>
+
+                        <a href="/pages/dashboard/surveys.html" class="flex items-center px-4 py-3 text-gray-400 hover:text-cyan-400 hover:bg-dark-card rounded-lg group transition-colors">
+                            <svg class="mr-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path>
+                            </svg>
+                            Surveys
+                        </a>
+                        
+                        <a href="/pages/dashboard/profile.html" class="flex items-center px-4 py-3 text-gray-400 hover:text-cyan-400 hover:bg-dark-card rounded-lg group transition-colors">
+                            <svg class="mr-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                            </svg>
+                            Profile
+                        </a>
+
+                        <a href="/pages/dashboard/settings.html" class="flex items-center px-4 py-3 text-gray-400 hover:text-cyan-400 hover:bg-dark-card rounded-lg group transition-colors">
+                            <svg class="mr-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                            Settings
+                        </a>
+                    </nav>
+                </div>
+                
+                <div class="p-4 border-t border-gray-800">
+                    <a href="/pages/login.html" class="flex items-center px-4 py-3 text-gray-400 hover:text-cyan-400 hover:bg-dark-card rounded-lg group transition-colors">
+                        <svg class="mr-3 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+                        </svg>
+                        Sign Out
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="flex flex-col flex-1 overflow-hidden">
+            <!-- Top Nav -->
+            <div class="relative">
+                <div class="flash-line top-0"></div>
+                <div class="flex items-center justify-between h-16 px-6 bg-dark-card border-b border-gray-800">
+                    <!-- Mobile Menu Button -->
+                    <button class="md:hidden text-gray-400 hover:text-white">
+                        <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                    
+                    <!-- Page Title -->
+                    <h1 class="text-xl font-semibold text-white">Notifications</h1>
+                    
+                    <!-- User Menu -->
+                    <div class="flex items-center">
+                        <div class="relative">
+                            <button class="flex items-center text-gray-400 hover:text-white focus:outline-none">
+                                <div class="h-8 w-8 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 flex items-center justify-center text-white font-semibold">
+                                    J
+                                </div>
+                                <span class="ml-2 hidden md:block">John Smith</span>
+                                <svg class="ml-1 h-4 w-4 hidden md:block" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Page Content -->
+            <div class="flex-1 overflow-auto p-6">
+                <div class="mb-8">
+                    <div class="flex justify-between items-center mb-4">
+                        <h2 class="text-2xl font-bold text-white">All Notifications</h2>
+                        <button id="mark-all-read" class="text-sm text-cyan-400 hover:text-cyan-300 flex items-center">
+                            <svg class="mr-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                            </svg>
+                            Mark All as Read
+                        </button>
+                    </div>
+                    
+                    <div class="card-bg rounded-xl overflow-hidden">
+                        <div class="px-4 py-3 bg-gray-800 bg-opacity-40 border-b border-gray-700 flex justify-between items-center">
+                            <div class="flex space-x-4">
+                                <button class="px-3 py-1 rounded-md bg-cyan-500 bg-opacity-20 text-cyan-400 text-sm font-medium">All</button>
+                                <button class="px-3 py-1 rounded-md text-gray-400 hover:bg-gray-700 text-sm font-medium">Unread</button>
+                                <button class="px-3 py-1 rounded-md text-gray-400 hover:bg-gray-700 text-sm font-medium">Courses</button>
+                                <button class="px-3 py-1 rounded-md text-gray-400 hover:bg-gray-700 text-sm font-medium">System</button>
+                            </div>
+                            <div>
+                                <button class="text-gray-400 hover:text-cyan-400 transition-colors">
+                                    <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                        <ul class="divide-y divide-gray-800" id="notifications-list">
+                            <li class="notification-item unread" data-id="1">
+                                <div class="px-6 py-4 flex items-center relative">
+                                    <div class="absolute left-0 top-0 h-full w-1 bg-cyan-400 notification-indicator"></div>
+                                    <div class="flex-shrink-0 ml-2">
+                                        <span class="h-10 w-10 rounded-full bg-blue-500 bg-opacity-20 flex items-center justify-center">
+                                            <svg class="h-5 w-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                            </svg>
+                                        </span>
+                                    </div>
+                                    <div class="ml-4 flex-1">
+                                        <div class="flex justify-between">
+                                            <p class="text-sm font-medium text-white">Course Update Available</p>
+                                            <p class="text-sm text-gray-500">1 hour ago</p>
+                                        </div>
+                                        <p class="text-sm text-gray-400">Your "Large Language Model Fundamentals" course has been updated with a new module "Advanced Transformer Architecture".</p>
+                                        <div class="mt-2 flex space-x-3">
+                                            <a href="#" class="text-sm text-cyan-400 hover:text-cyan-300 flex items-center">
+                                                View Details
+                                                <svg class="ml-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                                </svg>
+                                            </a>
+                                            <button class="mark-read-btn text-sm text-gray-400 hover:text-gray-300 flex items-center">
+                                                Mark as Read
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="notification-item unread" data-id="2">
+                                <div class="px-6 py-4 flex items-center relative">
+                                    <div class="absolute left-0 top-0 h-full w-1 bg-cyan-400 notification-indicator"></div>
+                                    <div class="flex-shrink-0 ml-2">
+                                        <span class="h-10 w-10 rounded-full bg-green-500 bg-opacity-20 flex items-center justify-center">
+                                            <svg class="h-5 w-5 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                            </svg>
+                                        </span>
+                                    </div>
+                                    <div class="ml-4 flex-1">
+                                        <div class="flex justify-between">
+                                            <p class="text-sm font-medium text-white">Assignment Graded</p>
+                                            <p class="text-sm text-gray-500">Yesterday</p>
+                                        </div>
+                                        <p class="text-sm text-gray-400">Your assignment "Building a Simple LLM" has been graded. You scored 95/100.</p>
+                                        <div class="mt-2 flex space-x-3">
+                                            <a href="#" class="text-sm text-cyan-400 hover:text-cyan-300 flex items-center">
+                                                View Grading Details
+                                                <svg class="ml-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                                </svg>
+                                            </a>
+                                            <button class="mark-read-btn text-sm text-gray-400 hover:text-gray-300 flex items-center">
+                                                Mark as Read
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="notification-item unread" data-id="3">
+                                <div class="px-6 py-4 flex items-center relative">
+                                    <div class="absolute left-0 top-0 h-full w-1 bg-cyan-400 notification-indicator"></div>
+                                    <div class="flex-shrink-0 ml-2">
+                                        <span class="h-10 w-10 rounded-full bg-purple-500 bg-opacity-20 flex items-center justify-center">
+                                            <svg class="h-5 w-5 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path>
+                                            </svg>
+                                        </span>
+                                    </div>
+                                    <div class="ml-4 flex-1">
+                                        <div class="flex justify-between">
+                                            <p class="text-sm font-medium text-white">New Feedback Survey</p>
+                                            <p class="text-sm text-gray-500">3 days ago</p>
+                                        </div>
+                                        <p class="text-sm text-gray-400">Please complete the student feedback survey for the "Neural Network Fundamentals" course you recently finished.</p>
+                                        <div class="mt-2 flex space-x-3">
+                                            <a href="/pages/dashboard/surveys.html" class="mt-2 inline-flex items-center text-sm text-cyan-400 hover:text-cyan-300">
+                                                Take Survey
+                                                <svg class="ml-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                                </svg>
+                                            </a>
+                                            <button class="mark-read-btn text-sm text-gray-400 hover:text-gray-300 flex items-center">
+                                                Mark as Read
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="notification-item" data-id="4">
+                                <div class="px-6 py-4 flex items-center relative">
+                                    <div class="flex-shrink-0 ml-3">
+                                        <span class="h-10 w-10 rounded-full bg-yellow-500 bg-opacity-20 flex items-center justify-center">
+                                            <svg class="h-5 w-5 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                                            </svg>
+                                        </span>
+                                    </div>
+                                    <div class="ml-4 flex-1">
+                                        <div class="flex justify-between">
+                                            <p class="text-sm font-medium text-white">Upcoming Live Session</p>
+                                            <p class="text-sm text-gray-500">1 week ago</p>
+                                        </div>
+                                        <p class="text-sm text-gray-400">There's a live Q&A session for "Advanced LLM Techniques" on May 10, 2025 at 10:00AM PST.</p>
+                                        <div class="mt-2 flex space-x-3">
+                                            <a href="#" class="text-sm text-cyan-400 hover:text-cyan-300 flex items-center">
+                                                Add to Calendar
+                                                <svg class="ml-1 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                                                </svg>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="px-6 py-3 bg-gray-800 bg-opacity-40 border-t border-gray-700 text-center">
+                            <button class="text-sm text-cyan-400 hover:text-cyan-300">Load More</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Create flash effect
+            setInterval(() => {
+                const flashLines = document.querySelectorAll('.flash-line');
+                flashLines.forEach(line => {
+                    line.style.animation = 'none';
+                    void line.offsetWidth; // Trigger reflow
+                    line.style.animation = 'flash-line 3s infinite';
+                });
+            }, 3000);
+            
+            // Track the current active page and highlight it in the sidebar
+            const currentPath = window.location.pathname;
+            const navLinks = document.querySelectorAll('.flex-col .flex-grow nav a');
+            
+            navLinks.forEach(link => {
+                const href = link.getAttribute('href');
+                if (currentPath.includes(href) && href !== '/pages/dashboard/index.html') {
+                    // Remove active class from dashboard if we're on a subpage
+                    const dashboardLink = document.querySelector('a[href="/pages/dashboard/index.html"]');
+                    if (dashboardLink) {
+                        dashboardLink.classList.remove('text-cyan-400', 'bg-dark-card');
+                        dashboardLink.classList.add('text-gray-400', 'hover:text-cyan-400', 'hover:bg-dark-card');
+                    }
+                    
+                    // Add active class to current page link
+                    link.classList.remove('text-gray-400', 'hover:text-cyan-400', 'hover:bg-dark-card');
+                    link.classList.add('text-cyan-400', 'bg-dark-card');
+                }
+            });
+            
+            // Notification items - Mark as read functionality
+            const markReadButtons = document.querySelectorAll('.mark-read-btn');
+            markReadButtons.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const notificationItem = this.closest('.notification-item');
+                    notificationItem.classList.remove('unread');
+                    const indicator = notificationItem.querySelector('.notification-indicator');
+                    if (indicator) {
+                        indicator.style.display = 'none';
+                    }
+                    updateNotificationCount();
+                });
+            });
+            
+            // Mark all read functionality
+            const markAllReadBtn = document.getElementById('mark-all-read');
+            if (markAllReadBtn) {
+                markAllReadBtn.addEventListener('click', function() {
+                    const unreadItems = document.querySelectorAll('.notification-item.unread');
+                    unreadItems.forEach(item => {
+                        item.classList.remove('unread');
+                        const indicator = item.querySelector('.notification-indicator');
+                        if (indicator) {
+                            indicator.style.display = 'none';
+                        }
+                    });
+                    updateNotificationCount();
+                });
+            }
+            
+            // Update notification count in the sidebar
+            function updateNotificationCount() {
+                const unreadCount = document.querySelectorAll('.notification-item.unread').length;
+                const notificationDots = document.querySelectorAll('.notification-dot');
+                
+                if (unreadCount === 0) {
+                    notificationDots.forEach(dot => {
+                        dot.style.display = 'none';
+                    });
+                } else {
+                    notificationDots.forEach(dot => {
+                        dot.style.display = 'block';
+                    });
+                }
+            }
+        });
+    </script>
+</body>
+</html> 
