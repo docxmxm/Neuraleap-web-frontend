@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeuraLeap - Advanced AI Learning Platform</title>
+    <meta name="description" content="NeuraLeap is an advanced AI learning platform offering cutting-edge courses on large language models, neural networks, and AI safety.">
+    <meta name="keywords" content="AI learning, machine learning, neural networks, LLM, AI safety, AI courses">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🧠</text></svg>">
+    
+    <!-- Stylesheets -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="/css/main.css" rel="stylesheet">
+    <link href="/css/animations.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Neural network background -->
+    <div class="neural-bg"></div>
+    <div class="tech-lines-bg"></div>
+    
+    <!-- Header navigation -->
+    <div id="header-container"></div>
+
+    <!-- Hero section with particle effect -->
+    <div class="hero-gradient relative min-h-screen flex items-center py-20 px-0 overflow-hidden">
+        <!-- Particle animation background -->
+        <div class="particles" id="particles-js"></div>
+        
+        <!-- Data flow animation effect -->
+        <div class="data-flow"></div>
+
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center relative z-10 w-full px-4 sm:px-6 lg:px-8">
+            <div class="md:w-1/2 mb-10 md:mb-0">
+                <h1 class="text-4xl md:text-6xl font-bold mb-6 relative">
+                    Master the Next Gen <br>
+                    <span class="neon-text typewriter">AI Models</span>
+                </h1>
+                <p class="text-xl mb-8 text-gray-300 leading-relaxed">
+                    Enhance your skills with cutting-edge large language model and AI safety courses. Stay ahead in the rapidly evolving field of artificial intelligence.
+                </p>
+                <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                    <a href="/pages/courses/index.html" class="primary-button text-white px-6 py-3 rounded-lg flex items-center justify-center pulse-button">
+                        Explore Courses <svg class="ml-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
+                    </a>
+                    <a href="/pages/contact.html" class="neon-button px-6 py-3 rounded-lg flex items-center justify-center">
+                        Book a Consultation
+                    </a>
+                </div>
+            </div>
+
+            <!-- Neural network visualization -->
+            <div class="md:w-1/2 flex justify-center">
+                <div class="neural-network animate-float relative" id="neural-network">
+                    <!-- Remove the N in the center of neural network -->
+                    
+                    <!-- Add neon effect elements -->
+                    <div class="neon-pulse-container">
+                        <div class="neon-pulse neon-pulse-1"></div>
+                        <div class="neon-pulse neon-pulse-2"></div>
+                        <div class="neon-pulse neon-pulse-3"></div>
+                    </div>
+                    
+                    <!-- Add larger, more designed N -->
+                    <div class="designer-n">
+                        <div class="designer-n-shape">N</div>
+                        <div class="designer-n-glow"></div>
+                        <div class="designer-n-flicker">N</div>
+                        <div class="designer-n-highlight">N</div>
+                    </div>
+                    
+                    <!-- Neon Lines -->
+                    <div class="neon-lines">
+                        <div class="neon-line neon-line-1"></div>
+                        <div class="neon-line neon-line-2"></div>
+                        <div class="neon-line neon-line-3"></div>
+                        <div class="neon-line neon-line-4"></div>
+                    </div>
+                    
+                    <!-- Neon Nodes -->
+                    <div class="neon-nodes">
+                        <div class="neon-node neon-node-1"></div>
+                        <div class="neon-node neon-node-2"></div>
+                        <div class="neon-node neon-node-3"></div>
+                        <div class="neon-node neon-node-4"></div>
+                        <div class="neon-node neon-node-5"></div>
+                        <div class="neon-node neon-node-6"></div>
+                        <div class="neon-node neon-node-7"></div>
+                    </div>
+                    
+                    <!-- Neon Connections -->
+                    <div class="neon-connections">
+                        <div class="neon-connection neon-connection-1" data-from="1" data-to="3"></div>
+                        <div class="neon-connection neon-connection-2" data-from="1" data-to="2"></div>
+                        <div class="neon-connection neon-connection-3" data-from="2" data-to="4"></div>
+                        <div class="neon-connection neon-connection-4" data-from="3" data-to="5"></div>
+                        <div class="neon-connection neon-connection-5" data-from="4" data-to="6"></div>
+                        <div class="neon-connection neon-connection-6" data-from="5" data-to="7"></div>
+                        <div class="neon-connection neon-connection-7" data-from="4" data-to="7"></div>
+                        <div class="neon-connection neon-connection-8" data-from="2" data-to="6"></div>
+                    </div>
+                    
+                    <!-- Twinkle Stars -->
+                    <div class="twinkle twinkle-1"></div>
+                    <div class="twinkle twinkle-2"></div>
+                    <div class="twinkle twinkle-3"></div>
+                    <div class="twinkle twinkle-4"></div>
+                    <div class="twinkle twinkle-5"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Featured courses -->
+    <div class="py-16 px-6 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4 relative inline-block">
+                    Featured <span class="neon-text">Courses</span>
+                </h2>
+                <p class="text-gray-400 max-w-2xl mx-auto mt-6">Discover our carefully designed popular courses to enhance your AI skills and understanding.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Course card 1 -->
+                <div class="card-bg rounded-xl overflow-hidden interactive-card floating-card">
+                    <div class="h-48 bg-gradient-to-r from-blue-800 to-cyan-700 flex items-center justify-center p-6 relative overflow-hidden">
+                        <!-- Course level badge -->
+                        <div class="absolute top-4 left-4 bg-black bg-opacity-50 text-cyan-400 px-3 py-1 rounded-full text-xs font-medium">
+                            Beginner
+                        </div>
+                        <!-- Course icon -->
+                        <div class="text-white text-5xl">🤖</div>
+                        <!-- Neural network lines -->
+                        <div class="neural-network-bg"></div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 neon-text">AI Fundamentals</h3>
+                        <p class="text-gray-400 mb-4">Learn the basic concepts, history, and application scenarios of AI to build a solid foundation for further study.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-cyan-400 font-bold">$ 299</span>
+                            <a href="/pages/courses/ai-fundamentals.html" class="neon-button text-sm px-3 py-1 rounded">
+                                View Details
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Course card 2 -->
+                <div class="card-bg rounded-xl overflow-hidden interactive-card floating-card">
+                    <div class="h-48 bg-gradient-to-r from-purple-800 to-indigo-600 flex items-center justify-center p-6 relative overflow-hidden">
+                        <div class="absolute top-4 left-4 bg-black bg-opacity-50 text-cyan-400 px-3 py-1 rounded-full text-xs font-medium">
+                            Intermediate
+                        </div>
+                        <div class="text-white text-5xl">🧠</div>
+                        <div class="neural-network-bg"></div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 neon-text">Large Language Models in Practice</h3>
+                        <p class="text-gray-400 mb-4">Dive deep into LLM principles and applications, learn prompt engineering, and build LLM-based applications.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-cyan-400 font-bold">$ 599</span>
+                            <a href="/pages/courses/llm-practical.html" class="neon-button text-sm px-3 py-1 rounded">
+                                View Details
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Course card 3 -->
+                <div class="card-bg rounded-xl overflow-hidden interactive-card floating-card">
+                    <div class="h-48 bg-gradient-to-r from-red-700 to-pink-600 flex items-center justify-center p-6 relative overflow-hidden">
+                        <div class="absolute top-4 left-4 bg-black bg-opacity-50 text-cyan-400 px-3 py-1 rounded-full text-xs font-medium">
+                            Advanced
+                        </div>
+                        <div class="text-white text-5xl">🔒</div>
+                        <div class="neural-network-bg"></div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2 neon-text">AI Safety & Ethics</h3>
+                        <p class="text-gray-400 mb-4">Explore safety challenges in AI systems, ethical considerations, and best practices for building responsible AI.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-cyan-400 font-bold">$ 799</span>
+                            <a href="/pages/courses/ai-safety.html" class="neon-button text-sm px-3 py-1 rounded">
+                                View Details
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-10">
+                <a href="/pages/courses/index.html" class="neon-button px-6 py-3 rounded-lg inline-flex items-center">
+                    Browse All Courses
+                    <svg class="ml-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Why choose us -->
+    <div class="py-16 px-6 bg-darker-bg relative overflow-hidden">
+        <!-- Flickering line -->
+        <div class="flicker-line absolute top-0 left-0 w-full"></div>
+        
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4 relative inline-block">
+                    Why Choose <span class="neon-text">NeuraLeap</span>
+                </h2>
+                <p class="text-gray-400 max-w-2xl mx-auto mt-6">We provide the best AI learning experience for you</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+                <!-- Feature 1 -->
+                <div class="text-center p-6 interactive-card">
+                    <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 flex items-center justify-center">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 neon-text">Cutting-edge Content</h3>
+                    <p class="text-gray-400">Our courses are carefully designed by industry experts, keeping up with the latest developments in the AI field to ensure you learn the most cutting-edge knowledge.</p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="text-center p-6 interactive-card">
+                    <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-r from-purple-500 to-indigo-500 flex items-center justify-center">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 neon-text">Practice-Oriented</h3>
+                    <p class="text-gray-400">Learn through real projects and case studies, enabling you to not only master theoretical knowledge but also solve practical problems and quickly apply what you've learned.</p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="text-center p-6 interactive-card">
+                    <div class="w-16 h-16 mx-auto mb-4 rounded-full bg-gradient-to-r from-pink-500 to-red-500 flex items-center justify-center">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2 neon-text">Expert Guidance</h3>
+                    <p class="text-gray-400">You'll receive guidance and support from top experts in the AI field, answering questions and providing personalized learning advice.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Upcoming Activities -->
+    <div class="py-16 px-6 relative overflow-hidden">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4 relative inline-block">
+                    Upcoming <span class="neon-text">Activities</span>
+                </h2>
+                <p class="text-gray-400 max-w-2xl mx-auto mt-6">Join our teaching sessions, workshops, and events to enhance your AI knowledge and skills.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Activity 1 -->
+                <div class="card-bg rounded-xl overflow-hidden interactive-card floating-card">
+                    <div class="relative">
+                        <div class="h-48 bg-gradient-to-r from-blue-900 to-indigo-900 flex items-center justify-center overflow-hidden">
+                            <div class="absolute inset-0 flex items-center justify-center opacity-30">
+                                <svg class="h-64 w-64 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="0.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                                </svg>
+                            </div>
+                            <div class="relative z-10 text-center px-6">
+                                <div class="text-white text-3xl font-bold mb-2">UTS</div>
+                                <div class="text-blue-200">University of Technology Sydney</div>
+                            </div>
+                        </div>
+
+                        <div class="absolute top-4 left-4 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded">
+                            Mar 15
+                        </div>
+                    </div>
+
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-2">Advanced LLM Implementation Workshop</h3>
+
+                        <div class="flex items-center mb-4">
+                            <svg class="h-5 w-5 text-cyan-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                            <span class="text-gray-300">UTS Faculty of Engineering and IT</span>
+                        </div>
+
+                        <p class="text-gray-400 mb-6">A hands-on workshop for advanced students and faculty on implementing and fine-tuning large language models.</p>
+
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-400 text-sm">9:00 AM - 4:00 PM</span>
+                            <a href="/pages/activities/index.html" class="neon-button px-4 py-2 rounded text-sm">Register</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Activity 2 -->
+                <div class="card-bg rounded-xl overflow-hidden interactive-card floating-card">
+                    <div class="relative">
+                        <div class="h-48 bg-gradient-to-r from-purple-900 to-indigo-900 flex items-center justify-center overflow-hidden">
+                            <div class="absolute inset-0 flex items-center justify-center opacity-30">
+                                <svg class="h-64 w-64 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="0.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                                </svg>
+                            </div>
+                            <div class="relative z-10 text-center px-6">
+                                <div class="text-white text-3xl font-bold mb-2">Microsoft</div>
+                                <div class="text-blue-200">Tech Conference Center</div>
+                            </div>
+                        </div>
+
+                        <div class="absolute top-4 left-4 bg-purple-600 text-white text-xs font-bold px-3 py-1 rounded">
+                            Mar 22
+                        </div>
+                    </div>
+
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-2">AI Ethics Roundtable Discussion</h3>
+
+                        <div class="flex items-center mb-4">
+                            <svg class="h-5 w-5 text-cyan-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                            <span class="text-gray-300">Microsoft HQ, Building C</span>
+                        </div>
+
+                        <p class="text-gray-400 mb-6">Industry leaders and ethicists discuss the ethical implications and safeguards for advanced AI systems.</p>
+
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-400 text-sm">1:00 PM - 5:00 PM</span>
+                            <a href="/pages/activities/index.html" class="neon-button px-4 py-2 rounded text-sm">Register</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Activity 3 -->
+                <div class="card-bg rounded-xl overflow-hidden interactive-card floating-card">
+                    <div class="relative">
+                        <div class="h-48 bg-gradient-to-r from-cyan-900 to-blue-900 flex items-center justify-center overflow-hidden">
+                            <div class="absolute inset-0 flex items-center justify-center opacity-30">
+                                <svg class="h-64 w-64 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="0.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                                </svg>
+                            </div>
+                            <div class="relative z-10 text-center px-6">
+                                <div class="text-white text-3xl font-bold mb-2">Online</div>
+                                <div class="text-blue-200">Global Webinar</div>
+                            </div>
+                        </div>
+
+                        <div class="absolute top-4 left-4 bg-cyan-600 text-white text-xs font-bold px-3 py-1 rounded">
+                            Mar 28
+                        </div>
+                    </div>
+
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold text-white mb-2">Practical Prompt Engineering Webinar</h3>
+
+                        <div class="flex items-center mb-4">
+                            <svg class="h-5 w-5 text-cyan-400 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"></path>
+                            </svg>
+                            <span class="text-gray-300">Virtual Event</span>
+                        </div>
+
+                        <p class="text-gray-400 mb-6">Learn effective prompt engineering techniques to get better results from large language models like GPT-4.</p>
+
+                        <div class="flex items-center justify-between">
+                            <span class="text-gray-400 text-sm">10:00 AM - 12:00 PM</span>
+                            <a href="/pages/activities/index.html" class="neon-button px-4 py-2 rounded text-sm">Register</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-10">
+                <a href="/pages/activities/index.html" class="neon-button px-6 py-3 rounded-lg inline-flex items-center">
+                    View All Activities
+                    <svg class="ml-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Testimonials -->
+    <div class="py-16 px-6 bg-darker-bg relative overflow-hidden">
+        <!-- Flickering line -->
+        <div class="flicker-line absolute top-0 left-0 w-full"></div>
+        
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold mb-4 relative inline-block">
+                    Student <span class="neon-text">Feedback</span>
+                </h2>
+                <p class="text-gray-400 max-w-2xl mx-auto mt-6">Hear what our students have to say</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Testimonial 1 -->
+                <div class="p-6 card-bg rounded-xl relative">
+                    <div class="text-cyan-400 text-4xl absolute -top-2 -left-2">"</div>
+                    <p class="text-gray-300 mb-6 mt-4">NeuraLeap's courses gave me a whole new understanding of AI. The practical projects helped me quickly apply theory to my work, and now I've found my dream job in the AI field.</p>
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-cyan-500 rounded-full mr-3 flex items-center justify-center font-bold">L</div>
+                        <div>
+                            <h4 class="font-medium">Li Ming</h4>
+                            <p class="text-sm text-gray-400">Data Scientist @ Tech Company</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="p-6 card-bg rounded-xl relative">
+                    <div class="text-cyan-400 text-4xl absolute -top-2 -left-2">"</div>
+                    <p class="text-gray-300 mb-6 mt-4">As someone changing careers, NeuraLeap's course structure is clear and progressive, allowing me to easily enter the AI field. The mentors' professional guidance is invaluable.</p>
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-cyan-500 rounded-full mr-3 flex items-center justify-center font-bold">Z</div>
+                        <div>
+                            <h4 class="font-medium">Zhang Wei</h4>
+                            <p class="text-sm text-gray-400">AI Startup Founder</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="p-6 card-bg rounded-xl relative">
+                    <div class="text-cyan-400 text-4xl absolute -top-2 -left-2">"</div>
+                    <p class="text-gray-300 mb-6 mt-4">NeuraLeap's large language model course is the most comprehensive I've seen. From theory to practice to the latest application techniques, it enables me to develop truly valuable AI products.</p>
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-cyan-500 rounded-full mr-3 flex items-center justify-center font-bold">W</div>
+                        <div>
+                            <h4 class="font-medium">Wang Fang</h4>
+                            <p class="text-sm text-gray-400">Software Engineer @ Internet Company</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA section -->
+    <div class="py-16 px-6 relative overflow-hidden">
+        <div class="max-w-3xl mx-auto text-center">
+            <h2 class="text-3xl font-bold mb-4">
+                Ready to <span class="neon-text">Start</span> Your AI Learning Journey?
+            </h2>
+            <p class="text-gray-400 mb-8 max-w-2xl mx-auto">Whether you're new to AI or a professional seeking advancement, NeuraLeap can help you achieve your goals.</p>
+            <div class="flex flex-col sm:flex-row justify-center space-y-4 sm:space-y-0 sm:space-x-4">
+                <a href="/pages/courses/index.html" class="neon-button px-6 py-3 rounded-lg flex items-center justify-center">
+                    Explore Courses
+                </a>
+                <a href="/pages/contact.html" class="px-6 py-3 rounded-lg flex items-center justify-center bg-gray-800 hover:bg-gray-700 transition-colors">
+                    Contact Us
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div id="footer-container"></div>
+
+    <!-- JavaScript -->
+    <script>
+        // Simple component loader
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load header
+            fetch('/components/header.html')
+                .then(function(response) { return response.text(); })
+                .then(function(data) {
+                    document.getElementById('header-container').innerHTML = data;
+                });
+                
+            // Load footer
+            fetch('/components/footer.html')
+                .then(function(response) { return response.text(); })
+                .then(function(data) {
+                    document.getElementById('footer-container').innerHTML = data;
+                });
+        });
+    </script>
+    
+    <!-- Main scripts -->
+    <script src="/js/main.js"></script>
+    <script src="/js/particles.min.js"></script>
+    <script>
+        // Initialize particle effects when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            if (document.getElementById('particles-js')) {
+                particlesJS('particles-js', {
+                    "particles": {
+                        "number": {"value": 80, "density": {"enable": true, "value_area": 800}},
+                        "color": {"value": "#06b6d4"},
+                        "shape": {"type": "circle"},
+                        "opacity": {"value": 0.5, "random": true},
+                        "size": {"value": 3, "random": true},
+                        "line_linked": {
+                            "enable": true,
+                            "distance": 150,
+                            "color": "#06b6d4",
+                            "opacity": 0.4,
+                            "width": 1
+                        },
+                        "move": {
+                            "enable": true,
+                            "speed": 2,
+                            "direction": "none",
+                            "random": true,
+                            "straight": false,
+                            "out_mode": "out",
+                            "bounce": false
+                        }
+                    },
+                    "interactivity": {
+                        "detect_on": "canvas",
+                        "events": {
+                            "onhover": {
+                                "enable": true,
+                                "mode": "grab"
+                            },
+                            "onclick": {
+                                "enable": true,
+                                "mode": "push"
+                            },
+                            "resize": true
+                        },
+                        "modes": {
+                            "grab": {
+                                "distance": 140,
+                                "line_linked": {
+                                    "opacity": 1
+                                }
+                            },
+                            "push": {
+                                "particles_nb": 4
+                            }
+                        }
+                    },
+                    "retina_detect": true
+                });
+            }
+        });
+    </script>
+</body>
+</html>

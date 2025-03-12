@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeuralLeap - Email Verified</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="/css/main.css" rel="stylesheet">
+    <link href="/css/dashboard.css" rel="stylesheet">
+    <style>
+        .verify-container {
+            background: linear-gradient(135deg, rgba(17, 24, 39, 0.8), rgba(9, 14, 29, 0.9)), 
+                        url('/assets/neural-bg.jpg') no-repeat center center;
+            background-size: cover;
+        }
+    </style>
+</head>
+<body class="bg-dark-bg text-gray-200">
+    <!-- Header (Navbar) -->
+    <div id="header-container"></div>
+
+    <!-- Verification Success Section -->
+    <div class="verify-container min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-md w-full space-y-8 relative z-10">
+            <div class="card-bg rounded-xl p-8 text-center">
+                <svg class="mx-auto h-16 w-16 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                </svg>
+                
+                <h2 class="mt-6 text-3xl font-extrabold text-white">
+                    Email <span class="neon-text">Verified</span>
+                </h2>
+                
+                <p class="mt-4 text-lg text-gray-300">
+                    Your email has been successfully verified. You can now sign in to your account.
+                </p>
+                
+                <div class="mt-8">
+                    <a href="/pages/login.html" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-dark-bg bg-cyan-400 hover:bg-cyan-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cyan-500">
+                        Sign In
+                    </a>
+                </div>
+                
+                <p class="mt-6 text-sm text-gray-400">
+                    If you have any issues signing in, please <a href="#" class="text-cyan-400 hover:text-cyan-300">contact our support team</a>.
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div id="footer-container"></div>
+
+    <!-- JavaScript -->
+    <script src="/js/main.js"></script>
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+    
+    <script>
+        // Load header and footer components
+        document.addEventListener('DOMContentLoaded', function() {
+            // Load header
+            fetch('/components/header.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('header-container').innerHTML = data;
+                })
+                .catch(error => console.error('Error loading header:', error));
+            
+            // Load footer
+            fetch('/components/footer.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('footer-container').innerHTML = data;
+                })
+                .catch(error => console.error('Error loading footer:', error));
+            
+            // Auto-redirect to login page after 3 seconds
+            setTimeout(function() {
+                window.location.href = '/pages/login.html';
+            }, 3000);
+        });
+    </script>
+</body>
+</html> 
